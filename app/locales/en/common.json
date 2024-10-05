@@ -1,0 +1,16 @@
+{
+  "LOADING": {
+    "MESSAGE": "Launching application"
+  },
+  "ERRORS_GLOBAL": {
+    "TITLE": "Sorry, an error occurred",
+    "DESCRIPTION": "We have collected information about the error and will fix it as soon as possible.",
+    "SUBTITLE": "You can contact us if the problem persists."
+  },
+  "UPDATE": {
+    "TITLE": "New version available",
+    "DESCRIPTION": "A new version of the application is available. Update now to enjoy the latest features and improvements.",
+    "BUTTON_ACCEPT": "Update now",
+    "BUTTON_CANCEL": "Later"
+  }
+}

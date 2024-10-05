@@ -1,6 +1,28 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+apply plugin: "com.google.gms.google-services"
+apply plugin: "com.google.firebase.crashlytics"
+apply plugin: 'com.google.firebase.appdistribution'
+
+project.ext.vectoricons = [
+    iconFontNames: ['AntDesign.ttf', 'Feather.ttf', 'Ionicons.ttf'] // Fuentes de iconos React Native Vector Icons
+]
+
+// Archivos de .env para los diferentes flavours
+project.ext.envConfigFiles = [
+    developmentdebug: ".env.development",
+    developmentrelease: ".env.development",
+    stagingdebug: ".env.staging",
+    stagingrelease: ".env.staging",
+    productiondebug: ".env.production",
+    productionrelease: ".env.production",
+]
+
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle");
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
+import com.android.build.OutputFile
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -69,6 +91,8 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'org.webkit:android-jsc:+'
 
+apply from: new File(["node", "--print", "require.resolve('@sentry/react-native/package.json')"].execute().text.trim(), "../sentry.gradle")
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -80,8 +104,26 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
+        resValue 'string', 'build_config_package','com.trejocode.courses'
     }
+
+    flavorDimensions "default"
+
+     productFlavors {
+        production {
+            dimension "default"
+        }
+        staging {
+            applicationIdSuffix "staging"
+            resValue "string", "build_config_package", "com.trejocode.courses"
+        }
+        development {
+            applicationIdSuffix "development"
+            resValue "string", "build_config_package", "com.trejocode.courses"
+        }
+    }
+
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
@@ -93,6 +135,7 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            matchingFallbacks = ['debug', 'release']
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -100,6 +143,14 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+
+            /* Add the firebaseCrashlytics extension (by default,
+            * it's disabled to improve build speeds) and set
+            * nativeSymbolUploadEnabled to true along with a pointer to native libs. */
+            firebaseCrashlytics {
+                nativeSymbolUploadEnabled true
+                unstrippedNativeLibsDir 'build/intermediates/merged_native_libs/release/out/lib'
+            }
         }
     }
 }

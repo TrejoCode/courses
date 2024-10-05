@@ -72,3 +72,10 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+.env
+.env*
+google-services.json
+ios/tmp.xcconfig
+GoogleService-Info.plist
+sentry.properties

@@ -1,0 +1,16 @@
+{
+  "LOADING": {
+    "MESSAGE": "Iniciando aplicacion"
+  },
+  "ERRORS_GLOBAL": {
+    "TITLE": "Lo sentimos, algo salió mal",
+    "DESCRIPTION": "Hemos recopilado información sobre el error y lo solucionaremos lo más pronto posible.",
+    "SUBTITLE": "Puedes contactarnos si el problema persiste."
+  },
+  "UPDATE": {
+    "TITLE": "Nueva versión disponible",
+    "DESCRIPTION": "Hay una nueva versión de la aplicación disponible. ¿Deseas actualizarla?",
+    "BUTTON_ACCEPT": "Actualizar ahora",
+    "BUTTON_CANCEL": "Descartar"
+  }
+}

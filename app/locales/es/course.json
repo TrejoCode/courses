@@ -1,0 +1,27 @@
+{
+  "LOADING": {
+    "MESSAGE": "Cargando información del curso"
+  },
+  "ERROR": {
+    "BUTTON": "Reintentar",
+    "TITLE": "Ocurrió un problema",
+    "MESSAGE": "No fue posible obtener la información del curso"
+  },
+  "SUMMARY": {
+    "LESSONS": "lecciones",
+    "HOURS": "hrs de contenido"
+  },
+  "PERKS": {
+    "TITLE": "Beneficios",
+    "ACCESS": "Acceso de por vida",
+    "LEVELS": "niveles de aprendizaje",
+    "RESOURCES": "Recursos de aprendizaje incluidos",
+    "TAUGHT": "Impartido por"
+  },
+  "LESSONS": {
+    "TITLE": "Lecciones"
+  },
+  "INSTRUCTOR": {
+    "TITLE": "Instructor"
+  }
+}

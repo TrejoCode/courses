@@ -1,79 +1,172 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📱 Trejocode Courses
 
-# Getting Started
+Aplicación React Native (Android, iOS) production-ready que ofrece una plataforma para acceder a cursos gratuitos en línea.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+![Trejocode Courses](https://res.cloudinary.com/trejocode/image/upload/v1586298449/Trejocode/logo_t0otlj.png)
 
-## Step 1: Start the Metro Server
+![Home Screen](https://res.cloudinary.com/trejocode/image/upload/v1728098031/Screens/kz3i5md9adjnsagmaojp.png)
+![Course Screen](https://res.cloudinary.com/trejocode/image/upload/v1728098031/Screens/cuccfqejfmbnlejhdayp.png)
+![Lesson Screen](https://res.cloudinary.com/trejocode/image/upload/v1728098031/Screens/w4b0g73q64k1xgd6gaco.png)
+![Settings Screen](https://res.cloudinary.com/trejocode/image/upload/v1728098031/Screens/r4x6qyp4y7leixx0j46q.png)
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## 🏷️ Características
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- Open source
+- Production ready
+- Código documentado
+- Soporte a modo oscuro
+- Alerta de nueva versión
+- Integración con Fastlane CI/CD
+- Git Hooks, Commitlint, Changelog
+- Hermosa UI basada en Native Base
+- Integración con Sentry, Firebase Analytics
+- Android Flavours, Product Scheme Targets (Development, Staging, Production)
+
+## 📦 Construido con
+
+- Axios
+- Sentry
+- NativeBase
+- React Native
+- React Navigation
+- Firebase Analytics
+- Firebase Remote Config
+- Redux Toolkit, RTK Query
+- React Native Vector Icons
+- React Native Youtube Iframe
+
+## 📐 Requisitos
+
+- Cuenta de Sentry
+- Cuenta de Firebase
+- Node (versión mínima: 20)
+
+## 🚀 Instalación
+
+Estas instrucciones te proporcionarán una copia de esta base production-ready en funcionamiento en tu máquina local para fines de desarrollo. Consulta la sección de implementación para obtener notas sobre cómo desplegar el proyecto en producción.
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+git clone https://github.com/trejocode/courses.git
+cd courses
+yarn install
 ```
 
-## Step 2: Start your Application
+### ✏️ Renombrar el proyecto y el bundle ID
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+React Native por defecto inicializa el proyecto con un nombre por defecto, cambiarlo es un tema complicado, además adicionalmente las aplicaciones requieren un ID único para ambas plataformas.
 
-### For Android
+Este proyecto se llama: `courses`
+
+El bundle ID `com.trejocode.courses`
+
+El label del proyecto: `Trejocode - Cursos`
+
+#### Renombrar el proyecto con `react-native-rename`
+
+El ejecutar el siguiente comando:
 
 ```bash
-# using npm
+npx react-native-rename@latest "app_name" -b "bundle_identifier"
+```
+
+Ejemplo de uso:
+
+```bash
+npx react-native-rename@latest "Mis cursos" -b "com.mycompany.app"
+```
+
+Muchas gracias a: [React Native Rename](https://github.com/junedomingo/react-native-rename#readme)
+
+### 🔥 Instalación de Firebase
+
+Este proyecto utiliza Firebase por lo cual, será requerido un paso de instalación adicional, comparto la guía del sitio Web oficial:
+
+Tip: El proyecto viene listo, solo es necesario generar un nuevo proyecto o existe y generar los archivos:
+
+Android: `google-services.json` en `android/app`, `android/app/src/development`, `android/app/src/staging`
+
+iOS: `GoogleService-Info.plist` enlazarlo con XCode
+
+[Enlace: React Native Firebase](https://rnfirebase.io/)
+
+### 🔑 Gestionar variables de entorno `.env`
+
+Este proyecto esta configurado para utilizar variables de entorno gracias al paquete: `react-native-dotenv, @babel/preset-env`
+
+Es necesario crear un file en el root llamado: `.env`, `.env.development`, `.env.staging`, `.env.production`
+
+Donde puede añadir las variables de entorno que desees, es importante crear su definición de tipos.
+
+Edita el archivo: `app/ts/env.d.ts`:
+
+```
+  export interface NativeConfig {
+    APP_SENTRY_DSN: string;
+    APP_ENVIRONMENT: string;
+    APP_API_BASE_URL: string;
+    COURSES_APP_VERSION: string;
+    COURSES_APP_ENABLE_UPDATES: boolean;
+  }
+```
+
+Edita los archivo: `.env.*`:
+
+```
+APP_ENVIRONMENT = development
+APP_API_BASE_URL = https://some.api.com
+APP_SENTRY_DSN = UUID
+
+#Firebase
+COURSES_APP_ENABLE_UPDATES = true
+```
+
+Puedes cargar las variables en donde las requieras:
+
+`import { APP_ENVIRONMENT } from '@env';`
+
+[Documentación de dotenv](https://github.com/goatandsheep/react-native-dotenv)
+
+### ⚠️ Instalación de Sentry
+
+Este proyecto utiliza como reportador de errores Sentry, para configurar Sentry primero debes crear una cuenta de Sentry y ejecutar el siguiente comando:
+
+```
+npx @sentry/wizard@latest -s -i reactNative
+```
+
+Serás guiado durante toda la instalación.
+
+Finalmente, debes adjuntar el valor de tu DSN en file: `.env.*`
+
+[Documentación de Sentry](https://docs.sentry.io/platforms/react-native/)
+
+### 🇲🇽 Gestionar idiomas de la aplicación
+
+Este proyecto viene preparado para ser multidioma, por defecto utiliza Español e Inglés.
+
+Puede añadir más idiomas, creando el folder con el nuevo idioma: `app/locales/*`
+
+Y exportando desde `app/locales/resources.ts`,
+
+Finalmente extiende el soporte en `app/locales/i18n.ts` en el objeto: `supportedLngs: ['es', 'en', 'other'],`
+
+### 🌠 Cambiar el ícono de la app y el BootScreen
+
+Simplemente sigue el paso de: "Assets generation" del siguiente enlace, generará de manera automática los recursos para Android e iOS
+
+[Documentación oficial de React Native BootSplash](https://github.com/zoontek/react-native-bootsplash/tree/4.7.5#assets-generation)
+
+### 🚀 Ejecutar la app
+
+```bash
 npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## 🤝 Contribución
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+¡Esta base está abierta a contribuciones! Si deseas contribuir para mejorarla, sigue los pasos mencionados en la sección de contribución del README.
 
-## Step 3: Modifying your App
+## Licencia
 
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE.md) para más detalles.

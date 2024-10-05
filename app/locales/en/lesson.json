@@ -1,0 +1,23 @@
+{
+  "LOADING": {
+    "MESSAGE": "Loading lesson details"
+  },
+  "ERROR": {
+    "BUTTON": "Try again",
+    "TITLE": "Something went wrong",
+    "MESSAGE": "It was not possible to get lesson details"
+  },
+  "SUMMARY": {
+    "MINUTES": "minutes"
+  },
+  "RESOURCES": {
+    "TITLE": "Resources",
+    "EMPTY": "There are no resources for this lesson"
+  },
+  "NEXT": {
+    "TITLE": "Next lesson"
+  },
+  "INSTRUCTOR": {
+    "TITLE": "Mentor"
+  }
+}

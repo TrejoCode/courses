@@ -1,0 +1,15 @@
+{
+  "HEADING": {
+    "TITLE": "App settings"
+  },
+  "PREFERENCES": {
+    "TITLE": "Preferences",
+    "DARK_MODE": "Dark mode"
+  },
+  "ABOUT": {
+    "TITLE": "About the app",
+    "WEBSITE": "Official web site",
+    "LICENSES": "Software licenses",
+    "VERSION": "Version"
+  }
+}

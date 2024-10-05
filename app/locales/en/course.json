@@ -1,0 +1,27 @@
+{
+  "LOADING": {
+    "MESSAGE": "Loading course details"
+  },
+  "ERROR": {
+    "BUTTON": "Try again",
+    "TITLE": "Something went wrong",
+    "MESSAGE": "It was not possible to get course details"
+  },
+  "SUMMARY": {
+    "LESSONS": "lessons",
+    "HOURS": "hrs of content"
+  },
+  "PERKS": {
+    "TITLE": "Perks",
+    "ACCESS": "Lifetime access",
+    "LEVELS": "learning levels",
+    "RESOURCES": "Resources incluided",
+    "TAUGHT": "Taught by"
+  },
+  "LESSONS": {
+    "TITLE": "Lessons"
+  },
+  "INSTRUCTOR": {
+    "TITLE": "Mentor"
+  }
+}

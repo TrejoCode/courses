@@ -1,12 +1,22 @@
-# Resolve react_native_pods.rb with node to allow for hoisting
-require Pod::Executable.execute_command('node', ['-p',
-  'require.resolve(
-    "react-native/scripts/react_native_pods.rb",
-    {paths: [process.argv[1]]},
-  )', __dir__]).strip
+def node_require(script)
+   # Resolve script with node to allow for hoisting
+  require Pod::Executable.execute_command('node', ['-p',
+    "require.resolve(
+      '#{script}',
+      {paths: [process.argv[1]]},
+    )", __dir__]).strip
+end
+
+# Use it to require both react-native's and this package's scripts:
+node_require('react-native/scripts/react_native_pods.rb')
+node_require('react-native-permissions/scripts/setup.rb')
 
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
+
+setup_permissions([
+  'AppTrackingTransparency'
+])
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
@@ -14,8 +24,12 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'courses' do
+# target 'courses' do
+abstract_target 'coursesCommonPods' do
   config = use_native_modules!
+
+  use_frameworks! :linkage => :static
+  $RNFirebaseAsStaticFramework = true
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -26,6 +40,15 @@ target 'courses' do
   target 'coursesTests' do
     inherit! :complete
     # Pods for testing
+  end
+
+  target 'Courses' do
+  end
+
+  target 'Courses - Development' do 
+  end
+
+  target 'Courses - Staging' do     
   end
 
   post_install do |installer|

@@ -1,0 +1,26 @@
+{
+  "LOADING": {
+    "MESSAGE": "Cargando información de la lección"
+  },
+  "ERROR": {
+    "BUTTON": "Reintentar",
+    "TITLE": "Ocurrió un problema",
+    "MESSAGE": "No fue posible obtener la información del curso"
+  },
+  "SUMMARY": {
+    "MINUTES": "minutos"
+  },
+  "RESOURCES": {
+    "TITLE": "Recursos",
+    "EMPTY": "No hay recursos disponibles"
+  },
+  "LESSONS": {
+    "TITLE": "Lecciones"
+  },
+  "NEXT": {
+    "TITLE": "Siguiente lección"
+  },
+  "INSTRUCTOR": {
+    "TITLE": "Instructor"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "HEADING": {
+    "TITLE": "Hola, bienvenido",
+    "SUBTITLE": "Continua aprendiendo a desarrollar apps"
+  },
+  "LOADING": {
+    "MESSAGE": "Cargando lista de cursos"
+  },
+  "ERROR": {
+    "BUTTON": "Reintentar",
+    "TITLE": "Ocurrió un problema",
+    "MESSAGE": "No fue posible obtener la lista de cursos"
+  },
+  "CARD": {
+    "LESSONS": "Lecciones",
+    "HOURS": "hrs de contenido",
+    "REVIEWS": "Reseñas verificadas",
+    "BUTTON": "Comenzar"
+  }
+}
