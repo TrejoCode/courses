@@ -49,6 +49,9 @@ Estas instrucciones te proporcionarán una copia de esta base production-ready e
 git clone https://github.com/trejocode/courses.git
 cd courses
 yarn install
+
+# iOS (Paso adicional)
+npx pod-install
 ```
 
 ### ✏️ Renombrar el proyecto y el bundle ID
@@ -156,16 +159,164 @@ Simplemente sigue el paso de: "Assets generation" del siguiente enlace, generar�
 
 [Documentación oficial de React Native BootSplash](https://github.com/zoontek/react-native-bootsplash/tree/4.7.5#assets-generation)
 
-### 🚀 Ejecutar la app
+## 📁 Estructura del proyecto
 
-```bash
-npm run android
-npm run ios
+    .
+    └── courses
+        ├── android
+        ├── ios
+        └── app
+            ├── assets
+            │   ├── fonts
+            │   └── images            <--- Todos los recursos gráficos
+            ├── components
+            │   └── ComponentA
+            │       ├── index.tsx     <--- Componente de uso general, global (Presentación)
+            │       └── style.ts      <--- Estilos asociados al componente
+            ├── config                <--- Configuraciones de librerías
+            ├── constants             <--- Variables, cuyos valores no cambian
+            ├── helpers               <--- Funciones especificas ayudan en tareas comunes o repetitivas
+            ├── locales               <--- Diccionario de palabras en multiples idiomas
+            ├── navigation            <--- Componentes especificos que gestionan la navegación de la aplicación
+            ├── redux                 <--- Capa de dominio y infraestructura de datos
+            │   ├── api               <--- Gestión de todos los servicios de red
+            │   └── slices            <--- Gestión de datos de la aplicación
+            ├── screens               <--- Componentes de tipo "pantallas" (Presentación)
+            │   └── ScreenA
+            │       ├── views         <--- Componentes de tipo sub-vistas, ej: Una sub-vista de tipo tab
+            │       ├── components    <--- Componentes específicos que solo aplican a la pantalla
+            │       └── styles.ts     <--- Estilos asociados a la pantalla
+            └── ts
+                └── component.d.ts    <--- Definición de tipos de todos los componentes, vistas, configuraciones
+
+### 📄 Instalar Make
+
+```shell
+# Windows
+choco install make
+
+# Mac
+brew install make
+
+# Ubuntu
+sudo apt install make
 ```
 
-## 🤝 Contribución
+## 🤖 Android
 
-¡Esta base está abierta a contribuciones! Si deseas contribuir para mejorarla, sigue los pasos mencionados en la sección de contribución del README.
+### Product Flavors
+
+- La aplicación cuenta con 3 product flavors, cada una de ellas genera un apk con el sujito del environment
+
+  - `development`: Apunta a los servicios de desarrollo
+  - `staging`: Apunta a los servicios de staging
+  - `production`: Apunta a los servicios de producción
+
+Puedes ejecutar la aplicación en cada product flavor con `make`
+
+```bash
+# Igual a: npm run android / Para desarrollo, ejecutar en diferentes environments
+make androidDev
+make androidStg
+make androidProd
+
+# Generar APK o ejecutar en diferentes environments en modo "release" de RN
+make androidDev-release
+make androidStg-release
+make androidProd-release
+
+# Generar el bundle en diferentes environments abb
+make androidDevBundle
+make androidStgBundle
+make androidBundle
+```
+
+## 🍎 iOS
+
+### Targets / Schemes
+
+- La aplicación cuenta con 3 targets / Schemes, cada una de ellas genera un aplicativo apuntando a un environment
+
+  - `development`: Apunta a los servicios de desarrollo
+  - `staging`: Apunta a los servicios de staging
+  - `production`: Apunta a los servicios de producción
+
+Puedes ejecutar la aplicación en cada product flavor con `make`
+
+```bash
+# Igual a: npm run ios / Para desarrollo, ejecutar en diferentes environments
+make iosDev
+make iosStg
+make iosProd
+
+# Generar un aplicativo o ejecutar en diferentes environments en modo "release" de RN
+make iosDev-release
+make iosStg-release
+make iosProd-release
+```
+
+## 📚 Contribuciones al proyecto
+
+Este proyecto está configurado con Git Hooks utilizando Husky para garantizar la calidad del código y estandarizar los mensajes de commit.
+
+Al realizar un commit, se ejecutarán los siguientes pasos automáticamente:
+
+1. **Formateo del código**: Se utiliza una herramienta para formatear el código automáticamente antes de confirmar los cambios.
+2. **Revisión con ESLint**: El código es analizado por ESLint para identificar y corregir problemas de estilo y errores comunes.
+3. **Commitizen**: Para asegurar que los mensajes de commit sigan las convenciones establecidas, se utiliza Commitizen, lo que facilita el trabajo con Conventional Commits.
+
+## Pasos para hacer un commit
+
+1. Realiza tus cambios y añade los archivos al área de preparación (`staging area`).
+
+   ```bash
+   git add .
+   ```
+
+2. Ejecuta el comando de commit. Husky se encargará de los pasos mencionados anteriormente.
+   ```bash
+   git commit
+   ```
+
+### Versionado de la aplicación
+
+Flujo recomendado:
+
+- Realizar cambios
+- Realizar commits y publicarlos
+- Actualizar la versión de la aplicación, de ser el caso:
+
+  - `make version-patch`: Versión patch
+  - `make version-minor`: Versión minor
+  - `make version-major`: Versión major
+
+- Generar el changelog:
+
+  - `make changelog`: Generar changelog de cambios basados en conventional commits y semmver
+
+- Realizar commit y push
+- Crear una tag
+
+  - `git tag 1.x.x`
+
+- Hacer push de tags:
+
+  - `git push origin tags`
+
+## 🖌️ Recursos adicionales
+
+### Diagramas
+
+#### Alto nivel
+
+### Feature flags
+
+[Enlace de descarga](https://excalidraw.com/#json=SKK0dW0ssy-WTva6xWPMg,LEg2C9HNxnxG9v1K3YNr_A)
+
+| Nombre                     | Descripción                                                                                                                                           | Valor |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| COURSES_APP_VERSION        | Versión actual de la aplicación en tienda                                                                                                             | 1.0.0 |
+| COURSES_APP_ENABLE_UPDATES | Habilitar por defecto la verificación de la versión de la aplicación, si se deshabilita entonces no validará la siguiente flag de COURSES_APP_VERSION | true  |
 
 ## Licencia
 
