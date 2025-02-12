@@ -65,8 +65,8 @@ const HomeTabNavigation = () => {
                   focused
                     ? colors.primary.darken
                     : colorMode === 'dark'
-                    ? colors.dark[50]
-                    : colors.white
+                      ? colors.dark[50]
+                      : colors.white
                 }>
                 <Icon
                   size="md"
@@ -76,8 +76,8 @@ const HomeTabNavigation = () => {
                     focused
                       ? colors.white
                       : colorMode === 'dark'
-                      ? colors.secondaryAlt.lighten
-                      : colors.secondary.base
+                        ? colors.secondaryAlt.lighten
+                        : colors.secondary.base
                   }
                 />
               </Stack>
@@ -89,8 +89,8 @@ const HomeTabNavigation = () => {
                   focused
                     ? colors.primary.darken
                     : colorMode === 'dark'
-                    ? colors.secondaryAlt.lighten
-                    : colors.secondary.base
+                      ? colors.secondaryAlt.lighten
+                      : colors.secondary.base
                 }>
                 {t('TAB.HOME')}
               </Text>
@@ -119,8 +119,8 @@ const HomeTabNavigation = () => {
                   focused
                     ? colors.primary.darken
                     : colorMode === 'dark'
-                    ? colors.dark[50]
-                    : colors.white
+                      ? colors.dark[50]
+                      : colors.white
                 }>
                 <Icon
                   size="md"
@@ -130,8 +130,8 @@ const HomeTabNavigation = () => {
                     focused
                       ? colors.white
                       : colorMode === 'dark'
-                      ? colors.secondaryAlt.lighten
-                      : colors.secondary.base
+                        ? colors.secondaryAlt.lighten
+                        : colors.secondary.base
                   }
                 />
               </Stack>
@@ -143,8 +143,8 @@ const HomeTabNavigation = () => {
                   focused
                     ? colors.primary.darken
                     : colorMode === 'dark'
-                    ? colors.secondaryAlt.lighten
-                    : colors.secondary.base
+                      ? colors.secondaryAlt.lighten
+                      : colors.secondary.base
                 }>
                 {t('TAB.SETTINGS')}
               </Text>

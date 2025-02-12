@@ -2,9 +2,11 @@
  * @description Funcionalidades adicionales para la gestión de errores
  */
 
-import crashlytics from '@react-native-firebase/crashlytics';
+import {getCrashlytics} from '@react-native-firebase/crashlytics';
 import {captureMessage, captureException} from '@sentry/react-native';
 import type {TypeErrorLog, TypeUserIdentify, TypeError} from '@app/ts/error';
+
+const crashlytics = getCrashlytics();
 
 /**
  * @description Registra un log en Crashlytics y Sentry con opciones adicionales.
@@ -14,7 +16,7 @@ const createLog = ({message = ''}: TypeErrorLog) => {
   try {
     // Registrar logs en crashlytics y Sentry
     captureMessage(message);
-    crashlytics().log(message);
+    crashlytics.log(message);
   } catch (error) {
     console.warn('Error al registrar el log:', error);
   }
@@ -30,7 +32,7 @@ export const setUserIdentify = async ({idUser = 'N/V'}: TypeUserIdentify) => {
     const id = idUser !== null && idUser !== undefined ? String(idUser) : 'N/V';
 
     // Identificar el usuario en Crashlytics
-    crashlytics().setUserId(id);
+    crashlytics.setUserId(id);
   } catch (error) {
     console.warn('Error al registrar el usuario identificador:', error);
   }
@@ -66,8 +68,8 @@ export const reportError = async ({
       }
 
       // Registrar en Crashlytics
-      crashlytics().setAttributes(sanitizedCustomAttributes);
-      crashlytics().recordError(error, errorName);
+      crashlytics.setAttributes(sanitizedCustomAttributes);
+      crashlytics.recordError(error, errorName);
 
       // Registrar en Sentry
       captureException(error, sanitizedCustomAttributes);

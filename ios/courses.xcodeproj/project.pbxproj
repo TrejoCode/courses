@@ -95,12 +95,12 @@
 		4F2C1BF19B4CCAB7F591191F /* Pods-coursesCommonPods-Courses - Development.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coursesCommonPods-Courses - Development.release.xcconfig"; path = "Target Support Files/Pods-coursesCommonPods-Courses - Development/Pods-coursesCommonPods-Courses - Development.release.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-courses.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-courses.release.xcconfig"; path = "Target Support Files/Pods-courses/Pods-courses.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-courses-coursesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-courses-coursesTests.debug.xcconfig"; path = "Target Support Files/Pods-courses-coursesTests/Pods-courses-coursesTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5E5A57D96E8727C756CC5177 /* Pods_coursesCommonPods_Courses___Development.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_coursesCommonPods_Courses___Development.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E5A57D96E8727C756CC5177 /* Pods_coursesCommonPods_Courses___Development.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coursesCommonPods_Courses___Development.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		673521E968253327E4D53BC6 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = courses/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		6FDFDAE629CC7CC18EB3AD66 /* Pods_coursesCommonPods_Courses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coursesCommonPods_Courses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71159DE7023A0501AEF83EDD /* Pods-coursesCommonPods-Courses - Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coursesCommonPods-Courses - Staging.debug.xcconfig"; path = "Target Support Files/Pods-coursesCommonPods-Courses - Staging/Pods-coursesCommonPods-Courses - Staging.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = courses/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		83E425B9943529BA039B0A0C /* Pods_coursesCommonPods_Courses___Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_coursesCommonPods_Courses___Staging.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83E425B9943529BA039B0A0C /* Pods_coursesCommonPods_Courses___Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coursesCommonPods_Courses___Staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-courses-coursesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-courses-coursesTests.release.xcconfig"; path = "Target Support Files/Pods-courses-coursesTests/Pods-courses-coursesTests.release.xcconfig"; sourceTree = "<group>"; };
 		A36E42D09368A893E12AAA62 /* Pods-coursesCommonPods-coursesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coursesCommonPods-coursesTests.debug.xcconfig"; path = "Target Support Files/Pods-coursesCommonPods-coursesTests/Pods-coursesCommonPods-coursesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA4C1FE9C82E50010B028D4E /* Pods-coursesCommonPods-Courses.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coursesCommonPods-Courses.debug.xcconfig"; path = "Target Support Files/Pods-coursesCommonPods-Courses/Pods-coursesCommonPods-Courses.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1138,9 +1138,13 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				USE_HERMES = true;
 			};
 			name = Debug;
@@ -1221,7 +1225,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

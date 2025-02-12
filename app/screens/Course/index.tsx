@@ -7,8 +7,8 @@ import type {
   TypeLessonNavigationProp,
 } from '@app/ts/navigation';
 import CoursePresenter from './Presenter';
-import analytics from '@react-native-firebase/analytics';
 import {useGetCourseByIdQuery} from '@app/redux/api/courses';
+import {getAnalytics} from '@react-native-firebase/analytics';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
 const ScreenCourse = (): JSX.Element => {
@@ -27,7 +27,8 @@ const ScreenCourse = (): JSX.Element => {
     indexLesson: number,
     lessonName: string,
   ): Promise<void> => {
-    await analytics().logEvent('course_play', {
+    const analytics = getAnalytics();
+    await analytics.logEvent('course_play', {
       id: idLesson,
       name: lessonName,
       idCourse: params.id,

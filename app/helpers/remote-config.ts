@@ -4,8 +4,10 @@
 
 import Config from 'react-native-config';
 import {getVersion} from 'react-native-device-info';
-import RNFRemoteConfig from '@react-native-firebase/remote-config';
+import {getRemoteConfig} from '@react-native-firebase/remote-config';
 import type {FirebaseRemoteConfigTypes} from '@react-native-firebase/remote-config';
+
+const RNFRemoteConfig = getRemoteConfig();
 
 // Remote config: Valores por defectos, para el uso en local si no se obtienen valores remotos, se cargan desde los envs
 const REMOTE_CONFIG_DEFAULT_KEYS = {
@@ -25,20 +27,20 @@ const REMOTE_CONFIG_DEFAULT_VALUES = {
 const initializeRemoteConfig = async (): Promise<void> => {
   try {
     // Establece valores predeterminados
-    await RNFRemoteConfig().setDefaults({
+    await RNFRemoteConfig.setDefaults({
       ...REMOTE_CONFIG_DEFAULT_VALUES,
     });
 
     // Descarga los datos de configuración remota y los almacena en caché durante 15 minutos para producción y 5 minutos para desarrollo
-    await RNFRemoteConfig().fetch(__DEV__ ? 300 : 900);
+    await RNFRemoteConfig.fetch(__DEV__ ? 300 : 900);
 
     // Activa los datos obtenidos, resolviendo con un booleano que indica el estado de activación
-    const activated = await RNFRemoteConfig().activate();
+    const activated = await RNFRemoteConfig.activate();
 
     // Registra el estado de activación para verificación en desarrollo
     if (__DEV__) {
       console.info(
-        activated ?? false
+        (activated ?? false)
           ? 'Fireabase remote config: Descargado y activado correctamente'
           : 'Fireabase remote config: Descargado y previamente activado',
       );
@@ -54,7 +56,7 @@ const initializeRemoteConfig = async (): Promise<void> => {
  */
 export const getFetchStatus =
   (): FirebaseRemoteConfigTypes.LastFetchStatusType => {
-    return RNFRemoteConfig().lastFetchStatus;
+    return RNFRemoteConfig.lastFetchStatus;
   };
 
 /**
@@ -66,7 +68,7 @@ const getRemoteValue = (
   key: string,
 ): FirebaseRemoteConfigTypes.ConfigValue | null | undefined => {
   try {
-    const value = RNFRemoteConfig().getValue(key);
+    const value = RNFRemoteConfig.getValue(key);
     return value ? value : null;
   } catch (error) {
     console.warn('Error al obtener el valor remoto', error);
@@ -80,7 +82,7 @@ const getRemoteValue = (
 const getAllRemoteValues = (): Record<
   string,
   FirebaseRemoteConfigTypes.ConfigValue
-> => RNFRemoteConfig().getAll();
+> => RNFRemoteConfig.getAll();
 
 export const remoteConfigHelpers = {
   getRemoteValue,

@@ -7,9 +7,9 @@ import React from 'react';
 import CardCoursePresenter from './Presenter';
 import type {InterfaceCourse} from '@app/ts/courses';
 import {useNavigation} from '@react-navigation/native';
-import analytics from '@react-native-firebase/analytics';
 import {convertionHelpers} from '@app/helpers/convertions';
 import {useGetCourseByIdQuery} from '@app/redux/api/courses';
+import {getAnalytics} from '@react-native-firebase/analytics';
 import type {TypeRootStackNavigationProps} from '@app/ts/navigation';
 
 const CardCourseContainer = ({
@@ -17,6 +17,7 @@ const CardCourseContainer = ({
 }: {
   course: InterfaceCourse;
 }): JSX.Element => {
+  const analytics = getAnalytics();
   const navigation = useNavigation<TypeRootStackNavigationProps>();
 
   // Obtener los detalles del curso
@@ -28,7 +29,7 @@ const CardCourseContainer = ({
   const handlePressStart = async (
     currentCourse: InterfaceCourse,
   ): Promise<void> => {
-    await analytics().logEvent('course_start', {
+    await analytics.logEvent('course_start', {
       id: currentCourse?.id,
       name: currentCourse?.name,
     });

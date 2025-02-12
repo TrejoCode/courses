@@ -7,7 +7,7 @@ import {errorHelpers} from './errors';
 import {store} from '@app/redux/store';
 import {MutableRefObject} from 'react';
 import RNBootSplash from 'react-native-bootsplash';
-import analytics from '@react-native-firebase/analytics';
+import {getAnalytics} from '@react-native-firebase/analytics';
 
 /**
  * @description Maneja la aparición de RNBootSplash y la configuración inicial del idioma
@@ -33,6 +33,7 @@ const handleNavigationStateChange = async (
   currentRouteName: string,
   previousRouteName: string | undefined,
 ): Promise<void> => {
+  const analytics = getAnalytics();
   if (previousRouteName !== currentRouteName) {
     const analyticsParams = {
       screen_name: currentRouteName,
@@ -40,7 +41,7 @@ const handleNavigationStateChange = async (
     };
 
     try {
-      await analytics().logScreenView(analyticsParams);
+      await analytics.logScreenView(analyticsParams);
     } catch (error: any) {
       errorHelpers.reportError(error);
     }
