@@ -11,12 +11,12 @@ const RNFRemoteConfig = getRemoteConfig();
 
 // Remote config: Valores por defectos, para el uso en local si no se obtienen valores remotos, se cargan desde los envs
 const REMOTE_CONFIG_DEFAULT_KEYS = {
-  COURSES_APP_ENABLE_UPDATES: 'COURSES_APP_ENABLE_UPDATES',
   COURSES_APP_VERSION: 'COURSES_APP_VERSION',
+  COURSES_APP_ENABLE_UPDATES: 'COURSES_APP_ENABLE_UPDATES',
 };
 
 const REMOTE_CONFIG_DEFAULT_VALUES = {
-  COURSES_APP_VERSION: Config.COURSES_APP_VERSION || getVersion(),
+  COURSES_APP_VERSION: getVersion(),
   COURSES_APP_ENABLE_UPDATES: Config.COURSES_APP_ENABLE_UPDATES || false,
 };
 

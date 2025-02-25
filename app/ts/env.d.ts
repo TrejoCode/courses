@@ -7,7 +7,6 @@ declare module 'react-native-config' {
     APP_SENTRY_DSN: string;
     APP_ENVIRONMENT: string;
     APP_API_BASE_URL: string;
-    COURSES_APP_VERSION: string;
     COURSES_APP_ENABLE_UPDATES: boolean;
   }
 

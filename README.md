@@ -16,10 +16,9 @@ Aplicación React Native (Android, iOS) production-ready que ofrece una platafor
 - Código documentado
 - Soporte a modo oscuro
 - Alerta de nueva versión
-- Integración con Fastlane CI/CD
 - Git Hooks, Commitlint, Changelog
 - Hermosa UI basada en Native Base
-- Integración con Sentry, Firebase Analytics
+- Integración con Sentry, Firebase Analytics, Crashlytics
 - Android Flavours, Product Scheme Targets (Development, Staging, Production)
 
 ## 📦 Construido con
@@ -30,6 +29,7 @@ Aplicación React Native (Android, iOS) production-ready que ofrece una platafor
 - React Native
 - React Navigation
 - Firebase Analytics
+- Firebase Crashlytics
 - Firebase Remote Config
 - Redux Toolkit, RTK Query
 - React Native Vector Icons
@@ -107,7 +107,6 @@ Edita el archivo: `app/ts/env.d.ts`:
     APP_SENTRY_DSN: string;
     APP_ENVIRONMENT: string;
     APP_API_BASE_URL: string;
-    COURSES_APP_VERSION: string;
     COURSES_APP_ENABLE_UPDATES: boolean;
   }
 ```
@@ -304,10 +303,6 @@ Flujo recomendado:
   - `git push origin tags`
 
 ## 🖌️ Recursos adicionales
-
-### Diagramas
-
-#### Alto nivel
 
 ### Feature flags
 

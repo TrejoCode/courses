@@ -32,7 +32,7 @@ export const setUserIdentify = async ({idUser = 'N/V'}: TypeUserIdentify) => {
     const id = idUser !== null && idUser !== undefined ? String(idUser) : 'N/V';
 
     // Identificar el usuario en Crashlytics
-    crashlytics.setUserId(id);
+    await crashlytics.setUserId(id);
   } catch (error) {
     console.warn('Error al registrar el usuario identificador:', error);
   }
@@ -68,7 +68,7 @@ export const reportError = async ({
       }
 
       // Registrar en Crashlytics
-      crashlytics.setAttributes(sanitizedCustomAttributes);
+      await crashlytics.setAttributes(sanitizedCustomAttributes);
       crashlytics.recordError(error, errorName);
 
       // Registrar en Sentry

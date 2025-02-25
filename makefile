@@ -60,13 +60,13 @@ iosProd-release:
 
 #  Actualizar las versiones de las aplicaciones
 version-patch:
-	npm version patch --no-git-tag-version && bundle exec fastlane update_version
+	npm version patch --no-git-tag-version
 
 version-minor:
-	npm version minor --no-git-tag-version && bundle exec fastlane update_version
+	npm version minor --no-git-tag-version
 
 version-major:
-	npm version major --no-git-tag-version && bundle exec fastlane update_version
+	npm version major --no-git-tag-version
 
 # Generar changelog
 changelog:
