@@ -5,7 +5,7 @@
 import React from 'react';
 import ScreenLesson from '@app/screens/Lesson';
 import ScreenCourse from '@app/screens/Course';
-import HomeTabNavigation from './HomeTabNavigation';
+import HomeBottomTabNavigation from './HomeBottomTab';
 import {NAVIGATION_SHARED_OPTIONS} from '@app/config/navigation';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -16,9 +16,12 @@ const RootStack = () => {
     <RootStackNavigation.Navigator
       initialRouteName="Home"
       screenOptions={NAVIGATION_SHARED_OPTIONS}>
+      <RootStackNavigation.Screen
+        name="Home"
+        component={HomeBottomTabNavigation}
+      />
       <RootStackNavigation.Screen name="Course" component={ScreenCourse} />
       <RootStackNavigation.Screen name="Lesson" component={ScreenLesson} />
-      <RootStackNavigation.Screen name="Home" component={HomeTabNavigation} />
     </RootStackNavigation.Navigator>
   );
 };

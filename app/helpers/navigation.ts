@@ -6,7 +6,9 @@ import i18next from 'i18next';
 import {errorHelpers} from './errors';
 import {store} from '@app/redux/store';
 import {MutableRefObject} from 'react';
+import {theme} from '@app/config/native-base';
 import RNBootSplash from 'react-native-bootsplash';
+import type {TypeHomeTabsColors} from '@app/ts/navigation';
 import {getAnalytics} from '@react-native-firebase/analytics';
 
 /**
@@ -48,7 +50,50 @@ const handleNavigationStateChange = async (
   }
 };
 
+/**
+ * @description Obtiene el backgroundColor de las bottom tabs en la pantalla de inicio
+ */
+const getHomeTabsBackgroundColor = ({
+  colorMode,
+  isFocused,
+}: TypeHomeTabsColors) => {
+  if (isFocused) {
+    return theme.colors.primary.darken;
+  }
+
+  return colorMode === 'dark' ? theme.colors.dark[50] : theme.colors.white;
+};
+
+/**
+ * @description Obtiene el color de las bottom tabs icons en la pantalla de inicio
+ */
+const getHomeTabsIconColor = ({colorMode, isFocused}: TypeHomeTabsColors) => {
+  if (isFocused) {
+    return theme.colors.white;
+  }
+
+  return colorMode === 'dark'
+    ? theme.colors.secondaryAlt.lighten
+    : theme.colors.secondary.base;
+};
+
+/**
+ * @description Obtiene el color de las bottom tabs text en la pantalla de inicio
+ */
+const getHomeTabsLabelColor = ({colorMode, isFocused}: TypeHomeTabsColors) => {
+  if (isFocused) {
+    return theme.colors.primary.darken;
+  }
+
+  return colorMode === 'dark'
+    ? theme.colors.secondaryAlt.lighten
+    : theme.colors.secondary.base;
+};
+
 export const navigationHelpers = {
+  getHomeTabsIconColor,
   handleNavigationReady,
+  getHomeTabsLabelColor,
+  getHomeTabsBackgroundColor,
   handleNavigationStateChange,
 };

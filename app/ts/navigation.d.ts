@@ -2,10 +2,30 @@
  * @description Declaración de los tipos para la navegación
  */
 
+import type {ComponentType} from 'react';
+import type {ColorMode} from 'native-base';
 import type {InterfaceLesson} from '@app/ts/lessons';
 import type {RouteProp} from '@react-navigation/native';
 import type {InterfaceInstructor} from './instructors';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+export type TypeHomeNavigationRoutes = {
+  label: string;
+  iconName: string;
+  component: ComponentType<any>;
+  name: keyof TypeHomeBottomTabsParams;
+};
+
+export type TypeHomeTabsProps = {
+  title: string;
+  focused: boolean;
+  iconName: string;
+};
+
+export type TypeHomeTabsColors = {
+  isFocused: boolean;
+  colorMode: ColorMode;
+};
 
 export type TypeHomeBottomTabsParams = {
   ScreenHome: undefined;
